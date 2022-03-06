@@ -1,35 +1,44 @@
-**💛 You can help the author become a full-time open-source maintainer by [sponsoring him on GitHub](https://github.com/sponsors/egoist).**
+# axios-error-handler
 
----
+The utilities for error handling with axios.
 
-# my-ts-lib
+[![npm version](https://badgen.net/npm/v/axios-error-handler)](https://npm.im/axios-error-handler) [![npm downloads](https://badgen.net/npm/dm/axios-error-handler)](https://npm.im/axios-error-handler)
 
-[![npm version](https://badgen.net/npm/v/my-ts-lib)](https://npm.im/my-ts-lib) [![npm downloads](https://badgen.net/npm/dm/my-ts-lib)](https://npm.im/my-ts-lib)
+## Features:
 
-## Using this template
-
-- Search `my-ts-lib` and replace it with your custom package name.
-- Search `egoist` and replace it with your name.
-
-Features:
-
-- Package manager [pnpm](https://pnpm.js.org/), safe and fast
-- Release with [semantic-release](https://npm.im/semantic-release)
-- Bundle with [tsup](https://github.com/egoist/tsup)
-- Test with [vitest](https://vitest.dev)
-
-To skip CI (GitHub action), add `skip-ci` to commit message. To skip release, add `skip-release` to commit message.
+- Define error handlers based on response status code
+- Wildcards mathching a class of status codes
 
 ## Install
 
 ```bash
-npm i my-ts-lib
+npm i axios-error-handler
+```
+
+## Usage
+
+```ts
+import { createErrorHandler } from "axios-error-handler"
+
+axios.interceptors.response.use(
+  null,
+  createErrorHandler({
+    // Runs this callback if thrown.response.status is 401
+    401(thrown) {
+      alert("")
+    },
+    // Runs this callback if thrown.response.status is 5xx
+    "5xx"(thrown) {
+      alert("")
+    },
+  }),
+)
 ```
 
 ## Sponsors
 
-[![sponsors](https://sponsors-images.egoist.sh/sponsors.svg)](https://github.com/sponsors/egoist)
+[![sponsors](https://sponsors-images.SevenOutman.sh/sponsors.svg)](https://github.com/sponsors/SevenOutman)
 
 ## License
 
-MIT &copy; [EGOIST](https://github.com/sponsors/egoist)
+MIT &copy; [SevenOutman](https://github.com/sponsors/SevenOutman)
